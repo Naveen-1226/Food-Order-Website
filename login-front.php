@@ -34,7 +34,10 @@ color:#ff4757;
         <div class="login text-cente">
            <br><br>
             <?php
-                
+                if(isset($_SESSION['add'])){
+                    echo $_SESSION['add'];
+                    unset($_SESSION['add']);
+                }
                 if(isset($_SESSION['no-login-message'])){
                     echo $_SESSION['no-login-message'];
                     unset($_SESSION['no-login-message']);
@@ -80,7 +83,7 @@ if(isset($_POST['submit'])){
     if($count==1){
         $_SESSION['login']="<div class='success'>welcome alien</div>";
         
-       $_SESSION['user']=$user_name;//to check whether user is logged in or not and logout will unset it
+     
        header('location:'.SITEURL);
         ?>
         

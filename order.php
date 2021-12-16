@@ -1,3 +1,4 @@
+
 <?php include('partials-front/menu.php'); ?>
 <style>
 .success{
@@ -12,7 +13,9 @@ text-align:center;
 }
 
 </style>
+
 <?php
+ob_start();
 //check whether food id is set or not
 if(isset($_GET['food_id']))
 {
@@ -139,16 +142,45 @@ else
                     //die();
                     $res2=mysqli_query($conn,$sql2);
                     //check whether quey executed successfully or not
-                    if($res2==true){
-                        //query executed and order saved
-                        $_SESSION['order']="<div class='success text-center'>Food ordered Successfully.</div>";
-                        header('location:'.SITEURL);
-                    }
-                    else{
-                        //failed to save order
-                        $_SESSION['order']="<div class='failure text-center'>Faile to order food.</div>";
-                        header('location:'.SITEURL);
-                    }
+                    ?>
+                    <?php
+
+                            $to=$customer_email;
+                            $subject="Order Summary";
+                            $html="<html><body>";
+                            $html="<table class='tbl-30' border='1px'>";
+                            $html.='<tr><th>Name</th><th>Email</th><th>Food</th><th>price</th><th>qty</th><th>total</th><th>Order_date</th></tr>';
+                            $html.='<tr><td>'.$customer_name.'</td><td>'.$customer_email.'</td><td>'.$food.'</td><td>'.$price.'</td>
+                            <td>'.$qty.'</td><td>'.$total.'</td><td>'.$order_date.'</td></tr>';
+                             $html.='</table>';
+                             $html.="</body></html>";
+                            
+                             
+                             $to = $customer_email;
+                             $headers = "From Naveen \r\n";
+                             //$headers .= "Reply-To: ". strip_tags($_POST['req-email']) . "\r\n";
+                             //$headers .= "CC: susan@example.com\r\n";
+                             $headers .= 'MIME-Version: 1.0' . "\r\n";
+                             $headers .= 'Content-Type: text/html; charset=ISO-8859-1' . "\r\n";
+                             $subject = 'Order Summary';
+                            
+                            if( mail($to, $subject, $html, $headers)){
+
+                                $_SESSION['order']="<div class='success text-center'>Email sent Succesfully.</div>";
+                                header('location:'.SITEURL);
+                            }
+                            else{
+                                echo "failed ro semde";
+                            }
+
+
+                            ob_end_flush();?>
+
+                
+<?php
+
+                   
+                   
 
                     
 

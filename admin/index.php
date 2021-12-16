@@ -60,7 +60,7 @@
                     $row4=mysqli_fetch_assoc($res4);
                     $total_revenue=$row4['Total'];
                     ?>
-                    <h1>$<?php echo $total_revenue; ?></h1>
+                    <h1>&#8377;<?php echo $total_revenue; ?></h1>
                     <br>
                     Revenue Generated
                 </div>

@@ -6,6 +6,7 @@
     <section class="categories">
         <div class="container">
             <h2 class="text-center">Explore Foods</h2>
+            
             <?php
             //display all the categories that are active
             $sql="SELECT * FROM tbl_category WHERE active='Yes'";

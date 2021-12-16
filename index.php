@@ -26,7 +26,7 @@ color:#2ed573;
     <!-- fOOD sEARCH Section Ends Here -->
 
     <?php
-    if(isset($_SESSION['login'])){
+      if(isset($_SESSION['login'])){
         echo $_SESSION['login'];
         unset($_SESSION['login']);
     }
@@ -34,8 +34,6 @@ color:#2ed573;
         echo $_SESSION['order'];
         unset($_SESSION['order']);
     }
-    
-   
     ?>
 
     <!-- CAtegories Section Starts Here -->
@@ -45,7 +43,7 @@ color:#2ed573;
             
             <?php
             //create sql query to display data from database
-            $sql="SELECT * FROM tbl_category WHERE active='Yes' AND featured='Yes' LIMIT 3";
+            $sql="SELECT * FROM tbl_category WHERE active='Yes' AND featured='Yes' LIMIT 6";
             //execute query
             $res=mysqli_query($conn,$sql);
             $count=mysqli_num_rows($res);
@@ -105,7 +103,7 @@ color:#2ed573;
             <h2 class="text-center">Food Menu</h2>
                 <?php
                 //getting food from database that are active and featured
-                $sql2="SELECT * FROM tbl_food WHERE active='Yes' And featured='Yes' LIMIT 6";
+                $sql2="SELECT * FROM tbl_food WHERE active='Yes' And featured='Yes' LIMIT 3";
                 //execute the query
                 $res2=mysqli_query($conn,$sql2);
                 $count2=mysqli_num_rows($res2);
@@ -139,7 +137,7 @@ color:#2ed573;
 
                         <div class="food-menu-desc">
                             <h4><?php echo $title; ?></h4>
-                            <p class="food-price"><?php echo $price; ?></p>
+                            <p class="food-price">&#8377;<?php echo $price; ?></p>
                             <p class="food-detail">
                                 <?php echo $description; ?>
                             </p>
